@@ -3,205 +3,129 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>RifqyDesign Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0f1115; --text:#e7e9ee; --card:#161923; --border:#2a2e3c;
-      --primary:#5b8cff; --secondary:#22c55e; --accent:#ffb020;
-      --radius:12px; --shadow:0 6px 18px rgba(0,0,0,0.25);
+  <title>RifqyDesign Pro Developer Mode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style id="customCSS">
+    :root {
+      --primary:#5b8cff;
+      --secondary:#22c55e;
+      --accent:#ffb020;
+      --radius:12px;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text)}
-    header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
-    #title{margin:0;font-size:1.2rem}
-    .lang-toggle button{margin-left:6px;padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:#1a1f2b;color:#fff;cursor:pointer}
+    body{margin:0;font-family:'Poppins',sans-serif;background:#0f1115;color:#e7e9ee}
+    header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #2a2e3c;background:#0f1115}
     .layout{display:grid;grid-template-columns:1fr;gap:16px;padding:16px}
-    @media(min-width:960px){.layout{grid-template-columns:320px 1fr 320px}}
-    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+    @media(min-width:960px){.layout{grid-template-columns:300px 1fr 300px}}
+    .panel{background:#161923;border:1px solid #2a2e3c;border-radius:12px;padding:14px}
     .panel h2{margin:0 0 12px;font-size:1rem}
-    .group{margin-bottom:14px}
-    label{font-weight:600;font-size:0.9rem}
-    input,select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:#121620;color:var(--text)}
+    input,select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #2a2e3c;background:#121620;color:#e7e9ee}
     textarea{min-height:100px}
-    .preview{background:#fff;color:#111;border-radius:var(--radius);padding:16px}
-    .preview h1{margin:0 0 8px}
-    .preview p{margin:0 0 12px}
-    .ui-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-    .btn-ui{padding:10px 14px;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600}
+    .preview{background:#fff;color:#111;border-radius:12px;padding:16px}
+    .btn-ui{padding:10px 14px;border:none;border-radius:12px;cursor:pointer;font-weight:600}
     .btn-ui.primary{background:var(--primary);color:#fff}
     .btn-ui.secondary{background:var(--secondary);color:#fff}
     .btn-ui.accent{background:var(--accent);color:#fff}
     .btn-ui.ghost{background:transparent;border:1px solid #ccc;color:#111}
-    .badge{padding:6px 10px;border-radius:999px;font-weight:600}
-    .badge.primary{background:var(--primary);color:#fff}
-    .badge.secondary{background:var(--secondary);color:#fff}
-    .badge.accent{background:var(--accent);color:#fff}
-    .ui-card{background:#fff;border:1px solid #ddd;border-radius:var(--radius);padding:12px;min-width:200px}
-    .alert{background:#f8fafc;border:1px solid #ddd;border-radius:var(--radius);padding:12px}
-    .modal{background:#fff;border:1px solid #ddd;border-radius:var(--radius);padding:12px}
   </style>
 </head>
 <body>
   <header>
     <h1 id="title">🎨 RifqyDesign Pro</h1>
-    <div class="lang-toggle">
+    <div>
       <button id="btnID">🇮🇩</button>
       <button id="btnEN">🇬🇧</button>
     </div>
   </header>
 
   <main class="layout">
-    <!-- Panel kiri: Warna -->
+    <!-- Panel kiri: Warna & Font -->
     <section class="panel">
-      <h2 id="colorsTitle">Warna & Palet</h2>
-      <div class="group"><label id="labelPrimary">Warna Utama</label><input type="color" id="colorPrimary" value="#5b8cff"></div>
-      <div class="group"><label id="labelSecondary">Warna Sekunder</label><input type="color" id="colorSecondary" value="#22c55e"></div>
-      <div class="group"><label id="labelAccent">Warna Aksen</label><input type="color" id="colorAccent" value="#ffb020"></div>
-      <div class="group"><label id="labelFont">Font</label>
-        <select id="fontSelect"><option>Poppins</option><option>Inter</option><option>Roboto</option><option>Montserrat</option></select>
-      </div>
+      <h2 id="colorsTitle">Warna & Font</h2>
+      <label id="labelPrimary">Warna Utama</label>
+      <input type="color" id="colorPrimary" value="#5b8cff">
+      <label id="labelSecondary">Warna Sekunder</label>
+      <input type="color" id="colorSecondary" value="#22c55e">
+      <label id="labelAccent">Warna Aksen</label>
+      <input type="color" id="colorAccent" value="#ffb020">
+      <label id="labelFont">Font</label>
+      <select id="fontSelect"><option>Poppins</option><option>Roboto</option></select>
     </section>
 
-    <!-- Panel tengah: Preview -->
+    <!-- Panel tengah: Preview + HTML inject -->
     <section class="panel">
       <h2 id="previewTitle">Preview</h2>
       <div class="preview" id="preview">
         <h1 id="previewHeading">Judul Preview</h1>
         <p id="previewText">Halo, ini RifqyDesign Pro!</p>
-        <div class="ui-row">
-          <button class="btn-ui primary">Primary</button>
-          <button class="btn-ui secondary">Secondary</button>
-          <button class="btn-ui accent">Accent</button>
-          <button class="btn-ui ghost">Ghost</button>
-        </div>
-        <div class="ui-row">
-          <span class="badge primary">Badge</span>
-          <span class="badge secondary">Badge</span>
-          <span class="badge accent">Badge</span>
-        </div>
-        <div class="ui-row">
-          <div class="ui-card"><strong>Card</strong><p class="muted">Sample card</p></div>
-          <div class="alert"><strong>Alert</strong><p class="muted">Accessibility check</p></div>
-          <div class="modal"><strong>Modal</strong><p class="muted">Preview modal</p></div>
-        </div>
+        <button class="btn-ui primary">Primary</button>
+        <button class="btn-ui secondary">Secondary</button>
+        <button class="btn-ui accent">Accent</button>
+        <button class="btn-ui ghost">Ghost</button>
+        <div id="customHTML"></div>
       </div>
+      <label>Custom HTML</label>
+      <textarea id="htmlEditor" placeholder="<div>Tambahkan HTML di sini</div>"></textarea>
+      <button onclick="applyHTML()">Apply HTML</button>
     </section>
 
-    <!-- Panel kanan: Export -->
+    <!-- Panel kanan: Editor CSS/JS + Export -->
     <section class="panel">
-      <h2 id="exportTitle">Export</h2>
-      <div class="group"><label>CSS</label><textarea id="exportCSS" readonly></textarea></div>
-      <div class="group"><label>SCSS</label><textarea id="exportSCSS" readonly></textarea></div>
-      <div class="group"><label>Tailwind</label><textarea id="exportTailwind" readonly></textarea></div>
-      <div class="group"><label>JSON</label><textarea id="exportJSON" readonly></textarea></div>
+      <h2 id="exportTitle">Editor & Export</h2>
+      <label>Custom CSS</label>
+      <textarea id="cssEditor" placeholder="body { background:red; }"></textarea>
+      <button onclick="applyCSS()">Apply CSS</button>
+      <label>Custom JS</label>
+      <textarea id="jsEditor" placeholder="document.getElementById('previewText').style.color='blue';"></textarea>
+      <button onclick="applyJS()">Run JS</button>
+      <label>Export CSS</label>
+      <textarea id="exportCSS" readonly></textarea>
+      <label>Export SCSS</label>
+      <textarea id="exportSCSS" readonly></textarea>
+      <label>Export Tailwind</label>
+      <textarea id="exportTailwind" readonly></textarea>
+      <label>Export JSON</label>
+      <textarea id="exportJSON" readonly></textarea>
     </section>
   </main>
 
-<script>
+  <script id="customJS"></script>
+  <script>
     const dict = {
-      id:{
-        title:"🎨 RifqyDesign Pro",
-        colorsTitle:"Warna & Palet",
-        labelPrimary:"Warna Utama",
-        labelSecondary:"Warna Sekunder",
-        labelAccent:"Warna Aksen",
-        labelFont:"Font",
-        previewTitle:"Preview",
-        previewHeading:"Judul Preview",
-        previewText:"Halo, ini RifqyDesign Pro!",
-        exportTitle:"Export"
-      },
-      en:{
-        title:"🎨 RifqyDesign Pro",
-        colorsTitle:"Colors & Palette",
-        labelPrimary:"Primary Color",
-        labelSecondary:"Secondary Color",
-        labelAccent:"Accent Color",
-        labelFont:"Font",
-        previewTitle:"Preview",
-        previewHeading:"Preview Title",
-        previewText:"Hello, this is RifqyDesign Pro!",
-        exportTitle:"Export"
-      }
+      id:{title:"🎨 RifqyDesign Pro",colorsTitle:"Warna & Font",labelPrimary:"Warna Utama",labelSecondary:"Warna Sekunder",labelAccent:"Warna Aksen",labelFont:"Font",previewTitle:"Preview",previewHeading:"Judul Preview",previewText:"Halo, ini RifqyDesign Pro!",exportTitle:"Editor & Export"},
+      en:{title:"🎨 RifqyDesign Pro",colorsTitle:"Colors & Font",labelPrimary:"Primary Color",labelSecondary:"Secondary Color",labelAccent:"Accent Color",labelFont:"Font",previewTitle:"Preview",previewHeading:"Preview Title",previewText:"Hello, this is RifqyDesign Pro!",exportTitle:"Editor & Export"}
     };
+    function applyLang(l){for(const k in dict[l]){document.getElementById(k).textContent=dict[l][k];}}
+    document.getElementById("btnID").onclick=()=>applyLang("id");
+    document.getElementById("btnEN").onclick=()=>applyLang("en");
 
-    let lang = navigator.language.startsWith("id") ? "id" : "en";
-
-    function applyLang(l){
-      document.getElementById("title").textContent = dict[l].title;
-      document.getElementById("colorsTitle").textContent = dict[l].colorsTitle;
-      document.getElementById("labelPrimary").textContent = dict[l].labelPrimary;
-      document.getElementById("labelSecondary").textContent = dict[l].labelSecondary;
-      document.getElementById("labelAccent").textContent = dict[l].labelAccent;
-      document.getElementById("labelFont").textContent = dict[l].labelFont;
-      document.getElementById("previewTitle").textContent = dict[l].previewTitle;
-      document.getElementById("previewHeading").textContent = dict[l].previewHeading;
-      document.getElementById("previewText").textContent = dict[l].previewText;
-      document.getElementById("exportTitle").textContent = dict[l].exportTitle;
-    }
-
-    applyLang(lang);
-
-    document.getElementById("btnID").onclick = () => applyLang("id");
-    document.getElementById("btnEN").onclick = () => applyLang("en");
-
-    // Update preview + export
     function updateTheme(){
-      const p = document.getElementById("colorPrimary").value;
-      const s = document.getElementById("colorSecondary").value;
-      const a = document.getElementById("colorAccent").value;
-      const f = document.getElementById("fontSelect").value;
-
-      document.documentElement.style.setProperty("--primary", p);
-      document.documentElement.style.setProperty("--secondary", s);
-      document.documentElement.style.setProperty("--accent", a);
-      document.body.style.fontFamily = f + ", sans-serif";
-
-      // Export CSS
-      document.getElementById("exportCSS").value =
-`:root {
-  --primary: ${p};
-  --secondary: ${s};
-  --accent: ${a};
-}
-body { font-family: ${f}, sans-serif; }`;
-
-      // Export SCSS
-      document.getElementById("exportSCSS").value =
-`$primary: ${p};
-$secondary: ${s};
-$accent: ${a};
-$font: '${f}', sans-serif;`;
-
-      // Export Tailwind
-      document.getElementById("exportTailwind").value =
-`module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: '${p}',
-        secondary: '${s}',
-        accent: '${a}'
-      },
-      fontFamily: {
-        rifqy: ['${f}', 'sans-serif']
-      }
+      const p=document.getElementById("colorPrimary").value;
+      const s=document.getElementById("colorSecondary").value;
+      const a=document.getElementById("colorAccent").value;
+      const f=document.getElementById("fontSelect").value;
+      document.documentElement.style.setProperty("--primary",p);
+      document.documentElement.style.setProperty("--secondary",s);
+      document.documentElement.style.setProperty("--accent",a);
+      document.body.style.fontFamily=f+", sans-serif";
+      document.getElementById("exportCSS").value=`:root{--primary:${p};--secondary:${s};--accent:${a};}\nbody{font-family:${f},sans-serif;}`;
+      document.getElementById("exportSCSS").value=`$primary:${p};\n$secondary:${s};\n$accent:${a};\n$font:'${f}',sans-serif;`;
+      document.getElementById("exportTailwind").value=`module.exports={theme:{extend:{colors:{primary:'${p}',secondary:'${s}',accent:'${a}'},fontFamily:{rifqy:['${f}','sans-serif']}}}}`;
+      document.getElementById("exportJSON").value=JSON.stringify({primary:p,secondary:s,accent:a,font:f},null,2);
     }
-  }
-}`;
-
-      // Export JSON
-      document.getElementById("exportJSON").value = JSON.stringify({
-        primary:p, secondary:s, accent:a, font:f
-      }, null, 2);
-    }
-
     ["colorPrimary","colorSecondary","colorAccent","fontSelect"].forEach(id=>{
-      document.getElementById(id).addEventListener("input", updateTheme);
+      document.getElementById(id).addEventListener("input",updateTheme);
     });
-
     updateTheme();
+
+    function applyCSS(){
+      document.getElementById("customCSS").textContent=document.getElementById("cssEditor").value;
+    }
+    function applyJS(){
+      document.getElementById("customJS").textContent=document.getElementById("jsEditor").value;
+    }
+    function applyHTML(){
+      document.getElementById("customHTML").innerHTML=document.getElementById("htmlEditor").value;
+    }
   </script>
 </body>
 </html>
