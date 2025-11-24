@@ -1,115 +1,134 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RifqyDesign • Portfolio Desain</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#6c5ce7">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RifqyDesign</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{--p:#6c5ce7;--y:#ffd43b;--bg:#0f0c29;--card:rgba(255,255,255,0.06);--text:#fff;--radius:28px}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f0c29,#1e1b4b,#302b63);color:var(--text);min-height:100dvh;display:flex;flex-direction:column;overflow-x:hidden}
-    .header{text-align:center;padding:60px 20px 40px;background:linear-gradient(to bottom,rgba(108,92,231,0.3),transparent)}
-    h1{font-size:3.8rem;font-weight:900;background:linear-gradient(to right,var(--p),#c3b1ff);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
-    .tagline{font-size:1.3rem;font-weight:600;opacity:0.9;margin-bottom:30px}
-    .avatar{width:140px;height:140px;border-radius:50%;border:6px solid var(--p);box-shadow:0 0 40px rgba(108,92,231,0.7);margin:0 auto 20px;object-fit:cover}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;margin:40px 0}
-    .design-card{background:var(--card);backdrop-filter:blur(20px);border-radius:var(--radius);overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,0.5);transition:.4s;cursor:pointer;border:1px solid rgba(255,255,255,0.1)}
-    .design-card:hover{transform:translateY(-12px);box-shadow:0 25px 50px rgba(108,92,231,0.4);border-color:var(--p)}
-    .img{height:220px;background:#222;position:relative;overflow:hidden}
-    .img img{width:100%;height:100%;object-fit:cover;transition:.4s}
-    .design-card:hover .img img{transform:scale(1.1)}
-    .info{padding:24px}
-    .title{font-size:1.4rem;font-weight:800;margin-bottom:8px}
-    .cat{font-size:0.95rem;opacity:0.8;margin-bottom:12px;color:#b8b8ff}
-    .tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .tool{background:rgba(108,92,231,0.3);padding:6px 12px;border-radius:12px;font-size:0.8rem}
-    .footer{text-align:center;padding:60px 20px;background:rgba(0,0,0,0.4);margin-top:60px}
-    .social{margin:30px 0}
-    .social a{color:var(--text);font-size:2rem;margin:0 16px;transition:.3s}
-    .social a:hover{color:var(--p);transform:scale(1.2)}
-    @media(max-width:600px){h1{font-size:2.8rem}.grid{grid-template-columns:1fr}}
+    :root {
+      --bg:#0f1115; --text:#e7e9ee; --card:#1c1f2a; --border:#2a2e3c;
+      --primary:#5b8cff; --secondary:#22c55e; --accent:#ffb020;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);}
+    header{padding:16px;text-align:center;border-bottom:1px solid var(--border);}
+    header h1{margin:0;font-size:1.4rem;}
+    .container{display:flex;flex-direction:column;gap:16px;padding:16px;}
+    .panel{background:var(--card);padding:16px;border-radius:12px;border:1px solid var(--border);}
+    .panel h2{margin-top:0;font-size:1.1rem;}
+    .controls{display:flex;flex-direction:column;gap:12px;}
+    label{font-weight:600;font-size:0.9rem;}
+    input[type="color"],select,input[type="text"]{
+      padding:8px;border-radius:8px;border:1px solid var(--border);
+      background:#141414;color:var(--text);width:100%;
+    }
+    .preview{background:#fff;color:#000;padding:20px;border-radius:12px;min-height:200px;}
+    .preview h1{margin:0 0 12px;}
+    .preview p{margin:0 0 12px;}
+    .btn{padding:10px 14px;border:none;border-radius:8px;cursor:pointer;font-weight:600;}
+    .btn.primary{background:var(--primary);color:#fff;}
+    .btn.secondary{background:var(--secondary);color:#fff;}
+    .btn.accent{background:var(--accent);color:#fff;}
+    .export{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;}
+    textarea{width:100%;height:120px;margin-top:12px;padding:10px;border-radius:8px;
+      border:1px solid var(--border);background:#141414;color:var(--text);}
+    /* Responsive layout */
+    @media(min-width:900px){
+      .container{flex-direction:row;}
+      .panel{flex:1;max-width:300px;}
+      .preview{flex:2;}
+    }
   </style>
 </head>
 <body>
-  <div class="header">
-    <img src="https://rifqydev.my.id/assets/img/avatar.png" alt="RifqyDev" class="avatar" onerror="this.src='https://via.placeholder.com/140/6c5ce7/fff?text=RD'">
-    <h1>RifqyDesign</h1>
-    <p class="tagline">UI/UX • Logo • Thumbnail • Banner • Poster • Digital Art</p>
-  </div>
-
+  <header>
+    <h1>🎨 RifqyDesign Playground</h1>
+  </header>
   <div class="container">
-    <div class="grid">
-      <!-- Contoh 6 karya (ganti src & judul sesuka hati) -->
-      <div class="design-card" onclick="window.open('https://rifqydev.my.id','_blank')">
-        <div class="img"><img src="https://rifqydev.my.id/assets/design/1.jpg" alt="Design 1" onerror="this.src='https://via.placeholder.com/400x300/6c5ce7/fff?text=Design+1'"></div>
-        <div class="info">
-          <div class="title">Dashboard Admin Modern</div>
-          <div class="cat">UI/UX Design • Web App</div>
-          <div class="tools"><span class="tool">Figma</span><span class="tool">Photoshop</span></div>
-        </div>
+    <div class="panel">
+      <h2>Pengaturan</h2>
+      <div class="controls">
+        <label for="colorPrimary">Warna Utama</label>
+        <input type="color" id="colorPrimary" value="#5b8cff">
+        <label for="colorSecondary">Warna Sekunder</label>
+        <input type="color" id="colorSecondary" value="#22c55e">
+        <label for="colorAccent">Warna Aksen</label>
+        <input type="color" id="colorAccent" value="#ffb020">
+        <label for="fontSelect">Font</label>
+        <select id="fontSelect">
+          <option value="Inter">Inter</option>
+          <option value="Poppins">Poppins</option>
+          <option value="Roboto">Roboto</option>
+          <option value="Montserrat">Montserrat</option>
+        </select>
+        <label for="sampleText">Teks Preview</label>
+        <input type="text" id="sampleText" value="Halo, ini RifqyDesign!">
       </div>
-
-      <div class="design-card">
-        <div class="img"><img src="https://rifqydev.my.id/assets/design/2.jpg" alt="Design 2" onerror="this.src='https://via.placeholder.com/400x300/8b5cf6/fff?text=Design+2'"></div>
-        <div class="info">
-          <div class="title">Logo RifqyDev 2025</div>
-          <div class="cat">Branding • Logo Design</div>
-          <div class="tools"><span class="tool">Illustrator</span><span class="tool">After Effects</span></div>
-        </div>
+      <div class="export">
+        <button id="exportCSS" class="btn primary">⬇️ Export CSS</button>
+        <button id="exportJSON" class="btn secondary">⬇️ Export JSON</button>
       </div>
-
-      <div class="design-card">
-        <div class="img"><img src="https://rifqydev.my.id/assets/design/3.jpg" alt="Design 3" onerror="this.src='https://via.placeholder.com/400x300/a78bfa/fff?text=Design+3'"></div>
-        <div class="info">
-          <div class="title">Thumbnail Minecraft Addon</div>
-          <div class="cat">YouTube Thumbnail</div>
-          <div class="tools"><span class="tool">Photoshop</span><span class="tool">Cinema 4D</span></div>
-        </div>
-      </div>
-
-      <div class="design-card">
-        <div class="img"><img src="https://rifqydev.my.id/assets/design/4.jpg" alt="Design 4" onerror="this.src='https://via.placeholder.com/400x300/7c4dff/fff?text=Design+4'"></div>
-        <div class="info">
-          <div class="title">Poster Event Tech</div>
-          <div class="cat">Poster • Event</div>
-          <div class="tools"><span class="tool">Figma</span><span class="tool">Canva Pro</span></div>
-        </div>
-      </div>
-
-      <div class="design-card">
-        <div class="img"><img src="https://rifqydev.my.id/assets/design/5.jpg" alt="Design 5" onerror="this.src='https://via.placeholder.com/400x300/9575cd/fff?text=Design+5'"></div>
-        <div class="info">
-          <div class="title">Mobile App UI Kit</div>
-          <div class="cat">UI Design • Mobile</div>
-          <div class="tools"><span class="tool">Figma</span><span class="tool">Lottie</span></div>
-        </div>
-      </div>
-
-      <div class="design-card">
-        <div class="img"><img src="https://rifqydev.my.id/assets/design/6.jpg" alt="Design 6" onerror="this.src='https://via.placeholder.com/400x300/b388ff/fff?text=Design+6'"></div>
-        <div class="info">
-          <div class="title">Banner Website Premium</div>
-          <div class="cat">Web Banner • Landing Page</div>
-          <div class="tools"><span class="tool">Photoshop</span><span class="tool">Spline</span></div>
-        </div>
-      </div>
+      <textarea id="output" readonly placeholder="Hasil export akan muncul di sini..."></textarea>
+    </div>
+    <div class="preview" id="preview">
+      <h1>Judul Preview</h1>
+      <p id="previewText">Halo, ini RifqyDesign!</p>
+      <button class="btn primary">Primary</button>
+      <button class="btn secondary">Secondary</button>
+      <button class="btn accent">Accent</button>
     </div>
   </div>
 
-  <div class="footer">
-    <h2>Mau desain custom?</h2>
-    <p style="margin:20px 0;font-size:1.1rem">Open order untuk logo, thumbnail, banner, UI/UX, dll.</p>
-    <div class="social">
-      <a href="https://t.me/rifqydevs" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://wa.me/6287759652715" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://instagram.com/rifqydev" target="_blank"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p style="margin-top:30px;opacity:0.7">© 2025 RifqyDesign • Made with passion</p>
-  </div>
+  <script>
+    const colorPrimary = document.getElementById('colorPrimary');
+    const colorSecondary = document.getElementById('colorSecondary');
+    const colorAccent = document.getElementById('colorAccent');
+    const fontSelect = document.getElementById('fontSelect');
+    const sampleText = document.getElementById('sampleText');
+    const previewText = document.getElementById('previewText');
+    const output = document.getElementById('output');
+    const exportCSS = document.getElementById('exportCSS');
+    const exportJSON = document.getElementById('exportJSON');
+
+    function updateDesign(){
+      document.documentElement.style.setProperty('--primary', colorPrimary.value);
+      document.documentElement.style.setProperty('--secondary', colorSecondary.value);
+      document.documentElement.style.setProperty('--accent', colorAccent.value);
+      document.body.style.fontFamily = fontSelect.value + ', sans-serif';
+      previewText.textContent = sampleText.value;
+    }
+
+    [colorPrimary,colorSecondary,colorAccent,fontSelect,sampleText].forEach(el=>{
+      el.addEventListener('input', updateDesign);
+    });
+
+    exportCSS.addEventListener('click', () => {
+      const css = `
+:root {
+  --primary: ${colorPrimary.value};
+  --secondary: ${colorSecondary.value};
+  --accent: ${colorAccent.value};
+}
+body {
+  font-family: ${fontSelect.value}, sans-serif;
+}
+`;
+      output.value = css.trim();
+    });
+
+    exportJSON.addEventListener('click', () => {
+      const json = {
+        primary: colorPrimary.value,
+        secondary: colorSecondary.value,
+        accent: colorAccent.value,
+        font: fontSelect.value,
+        sampleText: sampleText.value
+      };
+      output.value = JSON.stringify(json, null, 2);
+    });
+
+    updateDesign();
+  </script>
 </body>
 </html>
