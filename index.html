@@ -1,116 +1,313 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RifqyDesign • Live Code Editor</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--p:#8b5cf6;--bg:#0a0a1a;--panel:#111;--text:#e2e8f0;--radius:16px}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;display:grid;grid-template-rows:auto 1fr;height:100dvh;overflow:hidden}
-    header{text-align:center;padding:20px;background:linear-gradient(to right,#1a1a2e,#16213e);border-bottom:3px solid var(--p)}
-    h1{font-size:2.2rem;background:linear-gradient(to right,var(--p),#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}
-    .editor{display:grid;grid-template-columns:1fr 1fr;gap:0;height:100%}
-    textarea,iframe{width:100%;height:100%;border:none;outline:none;font-family:'JetBrains Mono',monospace;font-size:15px;padding:16px;background:var(--panel);color:var(--text);resize:none}
-    iframe{background:#fff}
-    .tabs{display:flex;background:#111}
-    .tab{padding:12px 20px;cursor:pointer;background:#222;color:#aaa;transition:.3s}
-    .tab.active{background:var(--p);color:#fff}
-    .download-btn{position:fixed;bottom:20px;right:20px;background:var(--p);color:#fff;padding:14px 24px;border-radius:50px;font-weight:700;box-shadow:0 8px 20px rgba(139,92,246,0.4);cursor:pointer;z-index:99;transition:.3s}
-    .download-btn:hover{transform:scale(1.1);background:#a78bfa}
-    @media(max-width:900px){
-      .editor{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
-      .tabs{order:-1}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RifqyDesign | Studio Pro</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Mengaktifkan Dark Mode via Class
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#1e293b', 900: '#0f172a', 950: '#020617' },
+                        primary: '#3b82f6',
+                        accent: '#8b5cf6',
+                        light_bg: '#f8fafc',
+                        light_panel: '#ffffff',
+                        light_border: '#e2e8f0'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-app); }
+        ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--scroll-hover); }
+
+        body { overflow: hidden; } /* App-like feel */
+        textarea { outline: none; resize: none; }
+        
+        /* Glass Effect */
+        .glass {
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* --- Dark Mode Variables (Default) --- */
+        body {
+            --bg-app: #020617;
+            --bg-panel: #0f172a;
+            --border: #1e293b;
+            --text-main: #f8fafc;
+            --scroll-thumb: #334155;
+            --scroll-hover: #475569;
+            --textarea-bg: #0d1117;
+            --iframe-bg: white;
+        }
+
+        /* --- Light Mode Variables --- */
+        .light {
+            --bg-app: #f8fafc;
+            --bg-panel: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #020617;
+            --scroll-thumb: #94a3b8;
+            --scroll-hover: #64748b;
+            --textarea-bg: #ffffff;
+            --iframe-bg: white;
+        }
+
+        /* Applying variables to elements */
+        body { background-color: var(--bg-app); color: var(--text-main); }
+        .glass { background: var(--bg-panel); }
+        .border-theme { border-color: var(--border); }
+        .bg-theme-panel { background-color: var(--bg-panel); }
+        .textarea-theme { background-color: var(--textarea-bg); color: var(--text-main); }
+    </style>
+</head>
+<body class="text-slate-300 font-sans h-screen flex flex-col">
+
+    <header class="glass h-14 px-4 flex items-center justify-between z-50">
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20">
+                R
+            </div>
+            <div class="hidden md:flex items-center gap-2">
+                <h1 class="font-semibold text-white tracking-tight">Rifqy<span class="text-primary">Studio</span></h1>
+                <span class="text-slate-500 text-sm">/</span>
+                <span class="text-slate-400 text-sm">Untitled Project</span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            
+            <div class="relative group hidden md:flex items-center bg-slate-800 rounded-md border border-slate-700 px-2 py-1">
+                <input type="color" id="ui-color-picker" value="#3b82f6" class="w-6 h-6 rounded cursor-pointer bg-transparent border-none p-0" oninput="updateColorLabel(this.value)">
+                <span id="color-label" class="ml-2 font-mono text-xs text-white uppercase">#3B82F6</span>
+            </div>
+
+            <button onclick="toggleTheme()" id="theme-toggle" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md border border-slate-700 transition flex items-center gap-2">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            
+            <button onclick="downloadCode()" class="text-xs bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-md shadow-lg shadow-blue-500/30 transition flex items-center gap-2">
+                <i class="fa-solid fa-download"></i> Save
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+        
+        <div class="flex-1 flex flex-col min-w-0 md:border-r border-theme bg-theme-panel">
+            
+            <div class="flex items-center bg-theme-panel border-b border-theme overflow-x-auto no-scrollbar">
+                <button onclick="switchTab('html')" id="tab-html" class="tab-btn px-4 py-2 text-xs font-medium border-b-2 border-primary text-white flex items-center gap-2">
+                    <i class="fa-brands fa-html5 text-red-400"></i> HTML
+                </button>
+                <button onclick="switchTab('css')" id="tab-css" class="tab-btn px-4 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-300 flex items-center gap-2">
+                    <i class="fa-brands fa-css3-alt text-blue-400"></i> CSS
+                </button>
+                <button onclick="switchTab('js')" id="tab-js" class="tab-btn px-4 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-300 flex items-center gap-2">
+                    <i class="fa-brands fa-js text-yellow-400"></i> JS
+                </button>
+                <button onclick="switchTab('result')" id="tab-result" class="md:hidden tab-btn px-4 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 flex items-center gap-2 ml-auto">
+                    <i class="fa-solid fa-play text-green-400"></i> Result
+                </button>
+            </div>
+
+            <div class="relative flex-1">
+                <textarea id="html-code" class="editor-area textarea-theme w-full h-full p-4 font-mono text-sm leading-relaxed" spellcheck="false" placeholder="">
+<div class="card-demo">
+    <h1>RifqyDesign</h1>
+    <p>Studio Pro is ready.</p>
+    <button class="btn-demo">Try Me</button>
+</div></textarea>
+                
+                <textarea id="css-code" class="editor-area hidden textarea-theme w-full h-full p-4 font-mono text-sm leading-relaxed" spellcheck="false" placeholder="/* Tulis CSS di sini */">
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f4f8; /* Ubah warna latar belakang di sini */
+    font-family: sans-serif;
+    margin: 0;
+}
+.card-demo {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+h1 { color: #3b82f6; margin-bottom: 0.5rem; }
+.btn-demo {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+.btn-demo:hover { background: #2563eb; }</textarea>
+                
+                <textarea id="js-code" class="editor-area hidden textarea-theme w-full h-full p-4 font-mono text-sm leading-relaxed" spellcheck="false" placeholder="// Tulis JS di sini">
+document.querySelector('.btn-demo').addEventListener('click', () => {
+    alert('Kode JavaScript berhasil dieksekusi!');
+});</textarea>
+            </div>
+        </div>
+
+        <div id="preview-container" class="flex-1 bg-white hidden md:block relative z-0" style="background-color: var(--iframe-bg);">
+            <div class="absolute top-0 left-0 bg-theme-panel text-slate-500 text-[10px] px-2 py-1 rounded-br z-10 font-mono border-b border-r border-theme">
+                Live Preview
+            </div>
+            <iframe id="result-frame" class="w-full h-full border-none"></iframe>
+        </div>
+
+    </main>
+
+    <footer class="h-8 bg-theme-panel border-t border-theme flex items-center justify-between px-4 text-[10px] text-slate-500 font-mono">
+        <div class="flex items-center gap-4">
+            <span><i class="fa-solid fa-code-branch"></i> main</span>
+            <span><i class="fa-regular fa-circle-check"></i> Connected</span>
+        </div>
+        <div class="hidden md:flex items-center gap-2">
+            <span>Ln 1, Col 1</span>
+            <span>UTF-8</span>
+            <span>Rifqy</span>
+        </div>
+    </footer>
+
+    <script>
+        const editors = {
+            html: document.getElementById('html-code'),
+            css: document.getElementById('css-code'),
+            js: document.getElementById('js-code')
+        };
+        const iframe = document.getElementById('result-frame');
+        const previewContainer = document.getElementById('preview-container');
+        const body = document.body;
+
+        // --- 1. CODE EXECUTION ---
+        function runCode() {
+            const html = editors.html.value;
+            const css = `<style>${editors.css.value}</style>`;
+            const js = `<script>${editors.js.value}<\/script>`;
+            
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            // Penting: tambahkan base-nya agar CSS di iframe tidak terpengaruh CSS halaman utama
+            doc.write(`<!DOCTYPE html><html><head>${css}</head><body>${html}${js}</body></html>`);
+            doc.close();
+        }
+
+        // Event Listener untuk Auto-Run
+        Object.values(editors).forEach(editor => {
+            editor.addEventListener('input', runCode);
+        });
+        
+        // --- 2. THEME TOGGLE (LIGHT/DARK MODE) ---
+        function toggleTheme() {
+            const isDarkMode = body.classList.toggle('light');
+            const icon = document.getElementById('theme-icon');
+            
+            if (isDarkMode) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // --- 3. COLOR PICKER ---
+        function updateColorLabel(color) {
+            const label = document.getElementById('color-label');
+            label.innerText = color.toUpperCase();
+            label.style.color = color;
+            
+            // Auto copy ke clipboard (hanya jika ada izin)
+            if (navigator.clipboard) {
+                 navigator.clipboard.writeText(color);
+            }
+        }
+
+        // --- 4. TAB SYSTEM (MOBILE) ---
+        function switchTab(type) {
+            // Reset tombol
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-primary', 'text-white');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
+
+            // Aktifkan tombol
+            const activeBtn = document.getElementById(`tab-${type}`);
+            activeBtn.classList.remove('border-transparent', 'text-slate-500');
+            activeBtn.classList.add('border-primary', 'text-white');
+
+            // Logic Tampilan
+            Object.values(editors).forEach(el => el.classList.add('hidden'));
+
+            if (type === 'result') {
+                // Tampilkan Preview
+                previewContainer.classList.remove('hidden');
+                previewContainer.classList.add('block');
+            } else {
+                // Tampilkan Editor
+                editors[type].classList.remove('hidden');
+                // Sembunyikan Preview di HP
+                if (window.innerWidth < 768) {
+                    previewContainer.classList.add('hidden');
+                }
+            }
+        }
+
+        // --- 5. DOWNLOAD ---
+        function downloadCode() {
+            const fullCode = `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exported from RifqyStudio Pro</title>
+    <style>${editors.css.value}</style>
 </head>
 <body>
-  <header>
-    <h1>RifqyDesign • Live Code Editor</h1>
-    <p style="opacity:0.8;margin-top:8px">HTML + CSS + JS → Preview langsung!</p>
-  </header>
+    ${editors.html.value}
+    <script>${editors.js.value}<\/script>
+</body>
+</html>`;
+            const blob = new Blob([fullCode], {type: "text/html"});
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "RifqyDesign_Project.html";
+            link.click();
+        }
 
-  <div class="tabs">
-    <div class="tab active" data-target="html">HTML</div>
-    <div class="tab" data-target="css">CSS</div>
-    <div class="tab" data-target="js">JavaScript</div>
-  </div>
-
-  <div class="editor">
-    <div id="html" class="panel">
-      <textarea id="html-code"><div class="card">
-  <h2>Hello from RifqyDesign!</h2>
-  <p>Klik tombol di bawah untuk download hasilnya</p>
-  <button class="btn">Download Project</button>
-</div></textarea>
-    </div>
-    <iframe id="preview"></iframe>
-  </div>
-
-  <div class="download-btn" onclick="downloadProject()">Download ZIP</div>
-
-  <script>
-    const htmlCode = document.getElementById('html-code');
-    const tabs = document.querySelectorAll('.tab');
-    let current = 'html';
-
-    // Default CSS & JS
-    let cssCode = `body{margin:0;background:#0a0a1a;color:#e2e8f0;font-family:Poppins,sans-serif;display:grid;place-items:center;height:100dvh}
-.card{background:rgba(139,92,246,0.15);padding:40px;border-radius:20px;text-align:center;border:2px solid #8b5cf6;box-shadow:0 10px 30px rgba(139,92,246,0.2)}
-h2{font-size:2.5rem;background:linear-gradient(to right,#8b5cf6,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.btn{background:#8b5cf6;color:#fff;padding:14px 32px;border:none;border-radius:50px;margin-top:20px;cursor:pointer;font-size:1.1rem}`;
-    let jsCode = `document.querySelector('.btn').addEventListener('click',()=>{alert('Keren banget desainnya!')})`;
-
-    function update() {
-      const result = `
-        <style>${cssCode}</style>
-        ${htmlCode.value}
-        <script>${jsCode}<\/script>
-      `;
-      document.getElementById('preview').contentDocument.body.innerHTML = result;
-    }
-
-    // Tab switch
-    tabs.forEach(t => t.onclick = () => {
-      tabs.forEach(x => x.classList.remove('active'));
-      t.classList.add('active');
-      document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
-      if(t.dataset.target === 'html') {
-        htmlCode.parentElement.style.display = 'block';
-      } else if(t.dataset.target === 'css') {
-        const textarea = document.createElement('textarea');
-        textarea.value = cssCode;
-        textarea.oninput = e => cssCode = e.target.value;
-        htmlCode.parentElement.innerHTML = '';
-        htmlCode.parentElement.appendChild(textarea);
-        htmlCode.parentElement.style.display = 'block';
-      } else {
-        const textarea = document.createElement('textarea');
-        textarea.value = jsCode;
-        textarea.oninput = e => jsCode = e.target.value;
-        htmlCode.parentElement.innerHTML = '';
-        htmlCode.parentElement.appendChild(textarea);
-        htmlCode.parentElement.style.display = 'block';
-      }
-      update();
-    });
-
-    htmlCode.oninput = update;
-    update();
-
-    // Download ZIP
-    function downloadProject() {
-      const zip = new JSZip();
-      zip.file("index.html", `<html><head><style>\( {cssCode}</style></head><body> \){htmlCode.value}<script>${jsCode}<\/script></body></html>`);
-      zip.generateAsync({type:"blob"}).then(blob => {
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = "RifqyDesign-Project.zip";
-        a.click();
-      });
-    }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        // Init: Jalankan saat halaman dimuat
+        window.onload = () => {
+             runCode();
+             // Aktifkan tab HTML secara default di mobile
+             switchTab('html'); 
+        };
+    </script>
 </body>
 </html>
