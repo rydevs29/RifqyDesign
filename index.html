@@ -1,257 +1,79 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RifqyDesign | Studio Pro</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        slate: { 850: '#1e293b', 900: '#0f172a', 950: '#020617' },
-                        primary: '#3b82f6',
-                        accent: '#8b5cf6'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-
-        body { overflow: hidden; background-color: #020617; }
-        textarea { outline: none; resize: none; }
-        
-        /* Glass Effect */
-        .glass {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Syntax Highlighting Fake (Colors) */
-        .code-html { color: #f87171; }
-        .code-css { color: #60a5fa; }
-        .code-js { color: #facc15; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RifqyDesign • Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--p:#8b5cf6;--bg:#0f0f1e;--card:rgba(255,255,255,0.04);--text:#e2e8f0;--radius:20px}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;display:grid;place-items:center;padding:20px}
+    .container{max-width:1100px;width:100%}
+    h1{font-size:3.5rem;font-weight:800;text-align:center;margin-bottom:8px;background:linear-gradient(to right,var(--p),#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .tagline{text-align:center;font-size:1.2rem;opacity:0.8;margin-bottom:40px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+    .card{background:var(--card);backdrop-filter:blur(16px);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.5);transition:.3s;border:1px solid rgba(139,92,246,0.2)}
+    .card:hover{transform:translateY(-10px);border-color:var(--p)}
+    .img{height:200px;overflow:hidden}
+    .img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+    .card:hover .img img{transform:scale(1.12)}
+    .info{padding:20px;text-align:center}
+    .title{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+    .desc{font-size:0.95rem;opacity:0.8;margin-bottom:16px}
+    .btn{display:inline-block;background:var(--p);color:#fff;padding:12px 24px;border-radius:50px;font-weight:600;text-decoration:none;transition:.3s}
+    .btn:hover{background:#a78bfa;transform:scale(1.05)}
+  </style>
 </head>
-<body class="text-slate-300 font-sans h-screen flex flex-col">
+<body>
+  <div class="container">
+    <h1>RifqyDesign</h1>
+    <p class="tagline">Koleksi karya desain digital — UI/UX, Logo, Thumbnail, Banner</p>
 
-    <header class="glass h-14 px-4 flex items-center justify-between z-50">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20">
-                R
-            </div>
-            <h1 class="font-semibold text-white tracking-tight hidden md:block">Rifqy<span class="text-primary">Studio</span></h1>
+    <div class="grid">
+      <!-- Ganti src & href download sesuai file kamu -->
+      <div class="card">
+        <div class="img"><img src="works/1.jpg" alt="Karya 1"></div>
+        <div class="info">
+          <div class="title>Modern Dashboard UI</div>
+          <div class="desc">Figma • Clean & Minimalist</div>
+          <a href="works/1.jpg" download class="btn">Download</a>
         </div>
+      </div>
 
-        <div class="flex items-center gap-3">
-            <div class="relative group hidden md:flex items-center bg-slate-800 rounded-md border border-slate-700 px-2 py-1">
-                <input type="color" id="ui-color-picker" value="#3b82f6" class="w-6 h-6 rounded cursor-pointer bg-transparent border-none p-0" oninput="updateColorLabel(this.value)">
-                <span id="color-label" class="ml-2 font-mono text-xs text-white uppercase">#3B82F6</span>
-            </div>
-
-            <button onclick="downloadCode()" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md border border-slate-700 transition flex items-center gap-2">
-                <i class="fa-solid fa-download"></i> Save
-            </button>
-            
-            <a href="https://dash.rifqydev.my.id" target="_blank" class="text-xs bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-md shadow-lg shadow-blue-500/30 transition flex items-center gap-2">
-                Dashboard <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+      <div class="card">
+        <div class="img"><img src="works/2.jpg" alt="Karya 2"></div>
+        <div class="info">
+          <div class="title>Logo RifqyDev 2025</div>
+          <div class="desc">Illustrator • Vector</div>
+          <a href="works/2.jpg" download class="btn">Download</a>
         </div>
-    </header>
+      </div>
 
-    <main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
-        
-        <div class="flex-1 flex flex-col min-w-0 md:border-r border-slate-800 bg-[#0d1117]">
-            
-            <div class="flex items-center bg-[#010409] border-b border-slate-800 overflow-x-auto no-scrollbar">
-                <button onclick="switchTab('html')" id="tab-html" class="tab-btn active px-4 py-2 text-xs font-medium border-b-2 border-primary text-white flex items-center gap-2">
-                    <i class="fa-brands fa-html5 text-red-400"></i> HTML
-                </button>
-                <button onclick="switchTab('css')" id="tab-css" class="tab-btn px-4 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-300 flex items-center gap-2">
-                    <i class="fa-brands fa-css3-alt text-blue-400"></i> CSS
-                </button>
-                <button onclick="switchTab('js')" id="tab-js" class="tab-btn px-4 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-300 flex items-center gap-2">
-                    <i class="fa-brands fa-js text-yellow-400"></i> JS
-                </button>
-                <button onclick="switchTab('result')" id="tab-result" class="md:hidden tab-btn px-4 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 flex items-center gap-2 ml-auto">
-                    <i class="fa-solid fa-play text-green-400"></i> Result
-                </button>
-            </div>
+      <div class="card">
+        <div class="img"><img src="works/3.jpg" alt="Karya 3"></div>
+        <div class="info">
+          <div class="title>Minecraft Thumbnail</div>
+          <div class="desc">Photoshop • Cinematic</div>
+          <a href="works/3.jpg" download class="btn">Download</a>
+        </div>
+      </div>
 
-            <div class="relative flex-1">
-                <textarea id="html-code" class="editor-area w-full h-full bg-[#0d1117] text-slate-300 p-4 font-mono text-sm leading-relaxed" spellcheck="false" placeholder="">
-<div class="container">
-    <div class="card">
-        <h1>Halo, Bos Rifqy!</h1>
-        <p>Design ini sudah dioptimalkan.</p>
-        <button class="btn">Klik Saya</button>
+      <div class="card">
+        <div class="img"><img src="works/4.jpg" alt="Karya 4"></div>
+        <div class="info">
+          <div class="title>Event Poster Tech</div>
+          <div class="desc">Figma • Gradient Style</div>
+          <a href="works/4.jpg" download class="btn">Download</a>
+        </div>
+      </div>
+
+      <!-- Tambah karya lain sesuka hati -->
     </div>
-</div></textarea>
-                
-                <textarea id="css-code" class="editor-area hidden w-full h-full bg-[#0d1117] text-slate-300 p-4 font-mono text-sm leading-relaxed" spellcheck="false" placeholder="/* Tulis CSS di sini */">
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #0f172a;
-    font-family: sans-serif;
-    margin: 0;
-}
-.card {
-    background: #1e293b;
-    padding: 2rem;
-    border-radius: 16px;
-    border: 1px solid #334155;
-    text-align: center;
-    box-shadow: 0 10px 30px -5px rgba(0,0,0,0.5);
-}
-h1 { color: #f8fafc; margin-bottom: 0.5rem; }
-p { color: #94a3b8; }
-.btn {
-    background: #3b82f6;
-    color: white;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 8px;
-    margin-top: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-}
-.btn:hover { background: #2563eb; }</textarea>
-                
-                <textarea id="js-code" class="editor-area hidden w-full h-full bg-[#0d1117] text-slate-300 p-4 font-mono text-sm leading-relaxed" spellcheck="false" placeholder="// Tulis JS di sini">
-document.querySelector('.btn').addEventListener('click', () => {
-    alert('Selamat datang di RifqyDesign Pro!');
-});</textarea>
-            </div>
-        </div>
 
-        <div id="preview-container" class="flex-1 bg-white hidden md:block relative z-0">
-            <div class="absolute top-0 left-0 bg-slate-100 text-slate-500 text-[10px] px-2 py-1 rounded-br z-10 font-mono border-b border-r border-slate-200">
-                Live Preview
-            </div>
-            <iframe id="result-frame" class="w-full h-full border-none"></iframe>
-        </div>
-
-    </main>
-
-    <footer class="h-8 bg-slate-900 border-t border-slate-800 flex items-center justify-between px-4 text-[10px] text-slate-500 font-mono">
-        <div class="flex items-center gap-4">
-            <span><i class="fa-solid fa-code-branch"></i> main</span>
-            <span><i class="fa-regular fa-circle-check"></i> Ready</span>
-        </div>
-        <div class="hidden md:flex items-center gap-2">
-            <span>Ln 1, Col 1</span>
-            <span>UTF-8</span>
-            <span>HTML</span>
-        </div>
-    </footer>
-
-    <script>
-        const editors = {
-            html: document.getElementById('html-code'),
-            css: document.getElementById('css-code'),
-            js: document.getElementById('js-code')
-        };
-        const iframe = document.getElementById('result-frame');
-        const previewContainer = document.getElementById('preview-container');
-
-        // Fungsi Menjalankan Kode (Live)
-        function runCode() {
-            const html = editors.html.value;
-            const css = `<style>${editors.css.value}</style>`;
-            const js = `<script>${editors.js.value}<\/script>`;
-            
-            const doc = iframe.contentDocument || iframe.contentWindow.document;
-            doc.open();
-            doc.write(html + css + js);
-            doc.close();
-        }
-
-        // Event Listener untuk Auto-Run
-        Object.values(editors).forEach(editor => {
-            editor.addEventListener('input', runCode);
-        });
-
-        // Tab System Logic (Penting untuk HP & Desktop)
-        function switchTab(type) {
-            // Reset tombol
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('border-primary', 'text-white');
-                btn.classList.add('border-transparent', 'text-slate-500');
-            });
-
-            // Aktifkan tombol yang diklik
-            const activeBtn = document.getElementById(`tab-${type}`);
-            activeBtn.classList.remove('border-transparent', 'text-slate-500');
-            activeBtn.classList.add('border-primary', 'text-white');
-
-            // Logic Tampilan
-            if (type === 'result') {
-                // Khusus HP: Tampilkan Preview, Sembunyikan Editor
-                previewContainer.classList.remove('hidden');
-                previewContainer.classList.add('block');
-                // Sembunyikan semua textarea
-                Object.values(editors).forEach(el => el.classList.add('hidden'));
-            } else {
-                // Tampilkan Editor, Sembunyikan Preview (di HP)
-                if (window.innerWidth < 768) {
-                    previewContainer.classList.add('hidden');
-                }
-                
-                // Atur textarea
-                Object.values(editors).forEach(el => el.classList.add('hidden'));
-                editors[type].classList.remove('hidden');
-            }
-        }
-
-        // Color Picker Logic (Fitur Code Warna)
-        function updateColorLabel(color) {
-            const label = document.getElementById('color-label');
-            label.innerText = color.toUpperCase();
-            label.style.color = color;
-            
-            // Auto copy ke clipboard
-            navigator.clipboard.writeText(color);
-        }
-
-        // Download Function
-        function downloadCode() {
-            const fullCode = `
-<!DOCTYPE html>
-<html>
-<head><style>${editors.css.value}</style></head>
-<body>${editors.html.value}<script>${editors.js.value}<\/script></body>
-</html>`;
-            const blob = new Blob([fullCode], {type: "text/html"});
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "RifqyDesign_Export.html";
-            link.click();
-        }
-
-        // Init
-        runCode();
-    </script>
+    <p style="text-align:center;margin-top:50px;opacity:0.7;font-size:0.9rem">
+      © 2025 RifqyDesign • All designs by RifqyDev
+    </p>
+  </div>
 </body>
 </html>
