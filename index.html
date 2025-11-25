@@ -3,77 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RifqyDesign • Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <title>RifqyDesign • Live Code Editor</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
   <style>
-    :root{--p:#8b5cf6;--bg:#0f0f1e;--card:rgba(255,255,255,0.04);--text:#e2e8f0;--radius:20px}
+    :root{--p:#8b5cf6;--bg:#0a0a1a;--panel:#111;--text:#e2e8f0;--radius:16px}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;display:grid;place-items:center;padding:20px}
-    .container{max-width:1100px;width:100%}
-    h1{font-size:3.5rem;font-weight:800;text-align:center;margin-bottom:8px;background:linear-gradient(to right,var(--p),#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .tagline{text-align:center;font-size:1.2rem;opacity:0.8;margin-bottom:40px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-    .card{background:var(--card);backdrop-filter:blur(16px);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.5);transition:.3s;border:1px solid rgba(139,92,246,0.2)}
-    .card:hover{transform:translateY(-10px);border-color:var(--p)}
-    .img{height:200px;overflow:hidden}
-    .img img{width:100%;height:100%;object-fit:cover;transition:.4s}
-    .card:hover .img img{transform:scale(1.12)}
-    .info{padding:20px;text-align:center}
-    .title{font-size:1.3rem;font-weight:800;margin-bottom:8px}
-    .desc{font-size:0.95rem;opacity:0.8;margin-bottom:16px}
-    .btn{display:inline-block;background:var(--p);color:#fff;padding:12px 24px;border-radius:50px;font-weight:600;text-decoration:none;transition:.3s}
-    .btn:hover{background:#a78bfa;transform:scale(1.05)}
+    body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;display:grid;grid-template-rows:auto 1fr;height:100dvh;overflow:hidden}
+    header{text-align:center;padding:20px;background:linear-gradient(to right,#1a1a2e,#16213e);border-bottom:3px solid var(--p)}
+    h1{font-size:2.2rem;background:linear-gradient(to right,var(--p),#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}
+    .editor{display:grid;grid-template-columns:1fr 1fr;gap:0;height:100%}
+    textarea,iframe{width:100%;height:100%;border:none;outline:none;font-family:'JetBrains Mono',monospace;font-size:15px;padding:16px;background:var(--panel);color:var(--text);resize:none}
+    iframe{background:#fff}
+    .tabs{display:flex;background:#111}
+    .tab{padding:12px 20px;cursor:pointer;background:#222;color:#aaa;transition:.3s}
+    .tab.active{background:var(--p);color:#fff}
+    .download-btn{position:fixed;bottom:20px;right:20px;background:var(--p);color:#fff;padding:14px 24px;border-radius:50px;font-weight:700;box-shadow:0 8px 20px rgba(139,92,246,0.4);cursor:pointer;z-index:99;transition:.3s}
+    .download-btn:hover{transform:scale(1.1);background:#a78bfa}
+    @media(max-width:900px){
+      .editor{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+      .tabs{order:-1}
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>RifqyDesign</h1>
-    <p class="tagline">Koleksi karya desain digital — UI/UX, Logo, Thumbnail, Banner</p>
+  <header>
+    <h1>RifqyDesign • Live Code Editor</h1>
+    <p style="opacity:0.8;margin-top:8px">HTML + CSS + JS → Preview langsung!</p>
+  </header>
 
-    <div class="grid">
-      <!-- Ganti src & href download sesuai file kamu -->
-      <div class="card">
-        <div class="img"><img src="works/1.jpg" alt="Karya 1"></div>
-        <div class="info">
-          <div class="title>Modern Dashboard UI</div>
-          <div class="desc">Figma • Clean & Minimalist</div>
-          <a href="works/1.jpg" download class="btn">Download</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img"><img src="works/2.jpg" alt="Karya 2"></div>
-        <div class="info">
-          <div class="title>Logo RifqyDev 2025</div>
-          <div class="desc">Illustrator • Vector</div>
-          <a href="works/2.jpg" download class="btn">Download</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img"><img src="works/3.jpg" alt="Karya 3"></div>
-        <div class="info">
-          <div class="title>Minecraft Thumbnail</div>
-          <div class="desc">Photoshop • Cinematic</div>
-          <a href="works/3.jpg" download class="btn">Download</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img"><img src="works/4.jpg" alt="Karya 4"></div>
-        <div class="info">
-          <div class="title>Event Poster Tech</div>
-          <div class="desc">Figma • Gradient Style</div>
-          <a href="works/4.jpg" download class="btn">Download</a>
-        </div>
-      </div>
-
-      <!-- Tambah karya lain sesuka hati -->
-    </div>
-
-    <p style="text-align:center;margin-top:50px;opacity:0.7;font-size:0.9rem">
-      © 2025 RifqyDesign • All designs by RifqyDev
-    </p>
+  <div class="tabs">
+    <div class="tab active" data-target="html">HTML</div>
+    <div class="tab" data-target="css">CSS</div>
+    <div class="tab" data-target="js">JavaScript</div>
   </div>
+
+  <div class="editor">
+    <div id="html" class="panel">
+      <textarea id="html-code"><div class="card">
+  <h2>Hello from RifqyDesign!</h2>
+  <p>Klik tombol di bawah untuk download hasilnya</p>
+  <button class="btn">Download Project</button>
+</div></textarea>
+    </div>
+    <iframe id="preview"></iframe>
+  </div>
+
+  <div class="download-btn" onclick="downloadProject()">Download ZIP</div>
+
+  <script>
+    const htmlCode = document.getElementById('html-code');
+    const tabs = document.querySelectorAll('.tab');
+    let current = 'html';
+
+    // Default CSS & JS
+    let cssCode = `body{margin:0;background:#0a0a1a;color:#e2e8f0;font-family:Poppins,sans-serif;display:grid;place-items:center;height:100dvh}
+.card{background:rgba(139,92,246,0.15);padding:40px;border-radius:20px;text-align:center;border:2px solid #8b5cf6;box-shadow:0 10px 30px rgba(139,92,246,0.2)}
+h2{font-size:2.5rem;background:linear-gradient(to right,#8b5cf6,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.btn{background:#8b5cf6;color:#fff;padding:14px 32px;border:none;border-radius:50px;margin-top:20px;cursor:pointer;font-size:1.1rem}`;
+    let jsCode = `document.querySelector('.btn').addEventListener('click',()=>{alert('Keren banget desainnya!')})`;
+
+    function update() {
+      const result = `
+        <style>${cssCode}</style>
+        ${htmlCode.value}
+        <script>${jsCode}<\/script>
+      `;
+      document.getElementById('preview').contentDocument.body.innerHTML = result;
+    }
+
+    // Tab switch
+    tabs.forEach(t => t.onclick = () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+      if(t.dataset.target === 'html') {
+        htmlCode.parentElement.style.display = 'block';
+      } else if(t.dataset.target === 'css') {
+        const textarea = document.createElement('textarea');
+        textarea.value = cssCode;
+        textarea.oninput = e => cssCode = e.target.value;
+        htmlCode.parentElement.innerHTML = '';
+        htmlCode.parentElement.appendChild(textarea);
+        htmlCode.parentElement.style.display = 'block';
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = jsCode;
+        textarea.oninput = e => jsCode = e.target.value;
+        htmlCode.parentElement.innerHTML = '';
+        htmlCode.parentElement.appendChild(textarea);
+        htmlCode.parentElement.style.display = 'block';
+      }
+      update();
+    });
+
+    htmlCode.oninput = update;
+    update();
+
+    // Download ZIP
+    function downloadProject() {
+      const zip = new JSZip();
+      zip.file("index.html", `<html><head><style>\( {cssCode}</style></head><body> \){htmlCode.value}<script>${jsCode}<\/script></body></html>`);
+      zip.generateAsync({type:"blob"}).then(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = "RifqyDesign-Project.zip";
+        a.click();
+      });
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </body>
 </html>
